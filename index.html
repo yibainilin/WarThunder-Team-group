@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>战争雷霆 · CNJDZ联队 [THL] 火热招募中</title>
+    <style>
+        /* 全局样式 - 战争雷霆军事风格 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* 主容器 - 仿军用简报风格 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(30, 30, 30, 0.95);
+            border: 2px solid #8b7355;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 装饰性迷彩条纹 */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #6b8e4c, #b87c4b, #4a5c3a, #8b5a2b);
+            z-index: 1;
+        }
+        
+        /* 头部区域 */
+        .header {
+            text-align: center;
+            padding: 20px 0 30px;
+            border-bottom: 1px solid #8b7355;
+            margin-bottom: 30px;
+        }
+        
+        .squad-name {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #d4af37;
+            text-shadow: 2px 2px 0 #4a3c2a, 4px 4px 0 #000;
+            margin-bottom: 10px;
+        }
+        
+        .squad-tag {
+            font-size: 1.8rem;
+            color: #b87c4b;
+            background: #2a2a2a;
+            display: inline-block;
+            padding: 5px 20px;
+            border: 1px solid #8b7355;
+            border-radius: 30px;
+            letter-spacing: 2px;
+        }
+        
+        /* 宣传语 */
+        .slogan {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        
+        /* 图片区域 - 你可以替换这里的图片链接 */
+        .image-section {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .featured-image {
+            max-width: 100%;
+            border: 3px solid #8b7355;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.7);
+            transition: transform 0.3s;
+        }
+        
+        .featured-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .image-caption {
+            margin-top: 10px;
+            color: #b87c4b;
+            font-size: 0.9rem;
+        }
+        
+        /* 信息卡片网格 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .info-card {
+            background: #252525;
+            border: 1px solid #5a4a3a;
+            border-radius: 8px;
+            padding: 25px 20px;
+            transition: all 0.3s;
+        }
+        
+        .info-card:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            color: #d4af37;
+            border-bottom: 1px solid #5a4a3a;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-title span {
+            font-size: 2rem;
+        }
+        
+        .card-content {
+            color: #c0c0c0;
+        }
+        
+        .card-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .card-content li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #3a3a3a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .card-content li:last-child {
+            border-bottom: none;
+        }
+        
+        .card-content li::before {
+            content: "▶";
+            color: #8b7355;
+            font-size: 0.8rem;
+        }
+        
+        /* QQ群区域 - 重点突出 */
+        .qq-section {
+            background: #1e3a2a;
+            border: 2px solid #d4af37;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 0 30px rgba(180, 130, 50, 0.3);
+        }
+        
+        .qq-title {
+            font-size: 2.2rem;
+            color: #d4af37;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .qq-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #fff;
+            background: #0a1a0f;
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 60px;
+            border: 2px solid #d4af37;
+            letter-spacing: 5px;
+            margin: 20px 0;
+            text-shadow: 0 0 10px #d4af37;
+        }
+        
+        .qq-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: #d4af37;
+            color: #1a1a1a;
+            border-color: #b87c4b;
+        }
+        
+        .btn-primary:hover {
+            background: #e5c158;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #d4af37;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #d4af37;
+            border-color: #d4af37;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.05);
+        }
+        
+                /* 响应式调整 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .squad-name {
+                font-size: 2.2rem;
+            }
+            .qq-number {
+                font-size: 2.5rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <div class="squad-name">CNJDZ联队</div>
+            <div class="squad-tag">[THL] · CNJDZ欢迎你</div>
+            <div class="slogan">"二龙而立，天下无敌——寻找真心的朋友！"</div>
+        </div>
+        
+        <!-- 图片区域 - 注意：你需要替换这里的图片链接 -->
+        <div class="image-section">
+            <img class="featured-image" src="https://i.postimg.cc/bJ0zGxMk/61CD8C36C96CF108A404200DFE762428.png" alt="战争雷霆游戏截图">
+            <!-- 上面用的是随机占位图，你需要替换成自己的图片 -->
+            <div class="image-caption">↑ 联队日常组队截图</div>
+        </div>
+        
+        <!-- 信息卡片网格 -->
+        <div class="info-grid">
+            <!-- 联队简介 -->
+            <div class="info-card">
+                <div class="card-title">
+                    <span>⚡</span> 联队简介
+                </div>
+                <div class="card-content">
+                    <p>欢迎各位新人，有什么不会的可以请教群内牢玩家。无论你是陆战月炮高手，还是空战打飞机高手，以及一窍不通的新人玩家。欢迎来到此联队，让我们一起进步。一起进攻D点
+要进联队的先进qq群958349041麻烦各位先进审核群谢谢配合</p>
+                    <p style="margin-top: 15px;">活跃成员：<strong style="color:#d4af37">135人</strong></p>
+                </div>
+            </div>
+            
+            <!-- 主打模式 -->
+            <div class="info-card">
+                <div class="card-title">
+                    <span>🎯</span> 主打模式
+                </div>
+                <div class="card-content">
+                    <ul>
+                        <li>陆战历史模式</li>
+                        <li>空战历史模式</li>
+                        <li>街机模式</li>
+                        <li>随心自定义</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 加入要求 -->
+            <div class="info-card">
+                <div class="card-title">
+                    <span>📋</span> 加入要求
+                </div>
+                <div class="card-content">
+                    <ul>
+                        <li>等级≥20</li>
+                        <li>不要逆天木柜子和婆罗门</li>
+                        <li>有麦克风/Discord</li>
+                        <li>活跃度不能低于100</li>
+                        <li>不要背后另起炉灶</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 联队福利 -->
+            <div class="info-card">
+                <div class="card-title">
+                    <span>🎁</span> 联队福利
+                </div>
+                <div class="card-content">
+                    <ul>
+                        <li>会有免费打研发活动</li>
+                        <li>会发奶茶和抽礼包金载</li>
+                        <li>可以一对一教学</li>
+                        <li>可以看猫娘</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- QQ群区域 - 核心 -->
+        <div class="qq-section">
+            <div class="qq-title">⚡ 立即加入我们 ⚡</div>
+            <div class="qq-number">958349041</div>
+            <p style="font-size:1.2rem; margin-bottom:15px;">（欢迎新人）</p>
+            <div class="qq-buttons">
+                <!-- 注意：这里的链接需要替换成你的加群链接 -->
+                <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=b38Uuk67GBApFc4RrA0bEk5w8kfFXTKOwY4KIlsKQuLWv3vbsd65tv2rSKNaDMz9&busi_data=eyJncm91cENvZGUiOiI5NTgzNDkwNDEiLCJ0b2tlbiI6Ijh1M2p0Zyt4c2Nlb1BOS0kwRkpZMTdqMjdCd0FFZTBaY1NiUVBsNEJEdThLajBqWnRhemJvbzBZd3BtL3NINnEiLCJ1aW4iOiIyODY0OTY3MDY2In0%3D&data=tUDDsIEUvy05dI24xw4rjA7VIp5vTw61TrtgjaR55n9yy14roMYd2d4KRbFPwxk3tqPfPLPouiA54JazgPLKBg&svctype=4&tempid=h5_group_info" target="_blank" class="btn btn-primary">🐧 一键加群</a>
+                <a href="#" class="btn btn-secondary">📢 欢迎各位新人，有什么不会的可以请教群内牢玩家</a>
+            </div>
+            <p style="margin-top: 25px; color:#b87c4b;">加群请备注游戏ID，否则可能被拒</p>
+        </div>
+        
+        <!-- 联队管理成员 -->
+        <div style="margin: 30px 0;">
+            <h2 style="color:#d4af37; margin-bottom:20px;">👑 联队管理团队</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                <div style="background:#252525; padding:15px 25px; border-radius:8px; text-align:center; min-width:150px;">
+                    <div style="font-size:2rem;">👨‍✈️</div>
+                    <div style="font-weight:bold; color:#d4af37;">总队长</div>
+                    <div style="font-size:0.9rem;">游戏ID: 白之洲春梓</div>
+                </div>
+                <div style="background:#252525; padding:15px 25px; border-radius:8px; text-align:center; min-width:150px;">
+                    <div style="font-size:2rem;">👨‍🚀</div>
+                    <div style="font-weight:bold; color:#d4af37;">一队队长</div>
+                    <div style="font-size:0.9rem;">游戏ID: 彳亍不叫行</div>
+                </div>
+                <div style="background:#252525; padding:15px 25px; border-radius:8px; text-align:center; min-width:150px;">
+                    <div style="font-size:2rem;">🛡️</div>
+                    <div style="font-weight:bold; color:#d4af37;">二队队长</div>
+                    <div style="font-size:0.9rem;">游戏ID: 魔法小画家城崎诺亚</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>© 2026 战争雷霆 · CNJDZ联队 [THL] | 国服 · 活跃招募中</p>
+            <p style="margin-top:10px;">⚔️ 相聚于安东 结识快递站 ⚔️</p>
+        </div>
+    </div>
+</body>
+</html>
