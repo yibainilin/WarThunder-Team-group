@@ -3,35 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>战争雷霆 · CNJDZ联队 [THL] 火热招募中</title>
+    <title>战争雷霆 · CNJDZ联队 [JDZ] 火热招募中</title>
     <style>
-        /* 全局样式 - 战争雷霆军事风格 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        /* ===== 自定义背景设置 ===== */
+        /* 【待替换1】在这里修改背景图片 */
         body {
             font-family: 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
             color: #e0e0e0;
             line-height: 1.6;
             min-height: 100vh;
             padding: 20px;
+            margin: 0;
+            
+            /* 移除这里的背景设置，我们用伪元素来实现视差效果 */
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
         }
         
-        /* 主容器 - 仿军用简报风格 */
+        /* 视差背景层 - 会跟着鼠标移动 */
+        .parallax-bg {
+            position: fixed;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            /* 【待替换2】背景图片链接（当前用的是预览图） */
+            background-image: url('https://i.postimg.cc/kgdYcZfs/preview.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+        
+        /* 半透明遮罩层 */
+        .parallax-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);  /* 【待替换3】遮罩透明度（0.6可调） */
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* 主容器 */
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            background: rgba(30, 30, 30, 0.95);
+            background: rgba(20, 20, 20, 0.85);  /* 【待替换4】容器透明度（0.85可调） */
             border: 2px solid #8b7355;
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(2px);  /* 【待替换5】背景模糊程度（2px可调） */
         }
         
         /* 装饰性迷彩条纹 */
@@ -67,7 +95,7 @@
         .squad-tag {
             font-size: 1.8rem;
             color: #b87c4b;
-            background: #2a2a2a;
+            background: rgba(42, 42, 42, 0.9);
             display: inline-block;
             padding: 5px 20px;
             border: 1px solid #8b7355;
@@ -81,9 +109,10 @@
             color: #b0b0b0;
             margin: 15px 0;
             font-style: italic;
+            text-shadow: 1px 1px 2px black;
         }
         
-        /* 图片区域 - 你可以替换这里的图片链接 */
+        /* 图片区域 */
         .image-section {
             margin: 30px 0;
             text-align: center;
@@ -95,6 +124,7 @@
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.7);
             transition: transform 0.3s;
+            background: rgba(0,0,0,0.3);
         }
         
         .featured-image:hover {
@@ -105,7 +135,33 @@
             margin-top: 10px;
             color: #b87c4b;
             font-size: 0.9rem;
+            text-shadow: 1px 1px 2px black;
         }
+        
+        /* 自定义图标样式 - 用来替换emoji */
+        .custom-icon {
+            width: 2rem;        /* 和原来emoji一样大 */
+            height: 2rem;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+        
+        /* ===== 图标图片替换区 ===== */
+        /* 把下面的图片链接换成你自己上传的图标地址 */
+        .icon-lightning { background-image: url('https://i.postimg.cc/yYjNPqTy/jin-ying.jpg'); }      /* 【待替换6】⚡图标 */
+        .icon-target { background-image: url('https://i.postimg.cc/5NC3Y3qt/wei-biao-ti-2.jpg'); }        /* 【待替换7】🎯图标 */
+        .icon-requirements { background-image: url('https://i.postimg.cc/ZnTWbJcH/wei-biao-ti-3.jpg'); }  /* 【待替换8】📋图标 */
+        .icon-gift { background-image: url('https://i.postimg.cc/MK3SHzD3/yin-shi.jpg'); }          /* 【待替换9】🎁图标 */
+        .icon-crown { background-image: url('https://i.postimg.cc/dVmSDYGH/wei-biao-ti-1.jpg'); }         /* 【待替换10】👑图标 */
+        .icon-pilot { background-image: url('https://i.postimg.cc/JzBzWy8V/wei-biao-ti-1.jpg'); }       /* 【待替换11】👨‍✈️图标 */
+        .icon-astronaut { background-image: url('https://i.postimg.cc/x84gMpqx/wei-biao-ti.jpg'); }   /* 【待替换12】👨‍🚀图标 */
+        .icon-shield { background-image: url('https://i.postimg.cc/jqFh89dL/wei-biao-ti.jpg'); }        /* 【待替换13】🛡️图标 */
+        .icon-penguin { background-image: url('https://i.postimg.cc/nLX7gKVz/wei-biao-ti-1.jpg'); }       /* 【待替换14】🐧图标 */
         
         /* 信息卡片网格 */
         .info-grid {
@@ -116,17 +172,19 @@
         }
         
         .info-card {
-            background: #252525;
+            background: rgba(37, 37, 37, 0.85);
             border: 1px solid #5a4a3a;
             border-radius: 8px;
             padding: 25px 20px;
             transition: all 0.3s;
+            backdrop-filter: blur(2px);
         }
         
         .info-card:hover {
             border-color: #d4af37;
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            background: rgba(47, 47, 47, 0.9);
         }
         
         .card-title {
@@ -141,7 +199,11 @@
         }
         
         .card-title span {
-            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
         }
         
         .card-content {
@@ -169,38 +231,45 @@
             content: "▶";
             color: #8b7355;
             font-size: 0.8rem;
+            margin-right: 5px;
         }
         
-        /* QQ群区域 - 重点突出 */
+        /* QQ群区域 */
         .qq-section {
-            background: #1e3a2a;
-            border: 2px solid #d4af37;
+            background: rgba(45, 60, 75, 0.85);  /* 【待替换15】QQ区域背景色 */
+            border: 2px solid #5d7a9c;            /* 【待替换16】QQ区域边框色 */
             border-radius: 15px;
             padding: 30px;
             text-align: center;
             margin: 40px 0;
-            box-shadow: 0 0 30px rgba(180, 130, 50, 0.3);
+            box-shadow: 0 0 30px rgba(93, 122, 156, 0.3);  /* 【待替换17】QQ区域光晕色 */
+            backdrop-filter: blur(2px);
         }
         
         .qq-title {
             font-size: 2.2rem;
-            color: #d4af37;
+            color: #d4af37;  /* 【待替换18】QQ区域标题颜色 */
             margin-bottom: 15px;
             text-transform: uppercase;
+            text-shadow: 2px 2px 2px black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         
         .qq-number {
             font-size: 4rem;
             font-weight: 800;
             color: #fff;
-            background: #0a1a0f;
+            background: rgba(10, 26, 15, 0.9);  /* 【待替换19】QQ号背景色 */
             display: inline-block;
             padding: 15px 40px;
             border-radius: 60px;
-            border: 2px solid #d4af37;
+            border: 2px solid #d4af37;  /* 【待替换20】QQ号边框色 */
             letter-spacing: 5px;
             margin: 20px 0;
-            text-shadow: 0 0 10px #d4af37;
+            text-shadow: 0 0 10px #d4af37;  /* 【待替换21】QQ号光晕色 */
         }
         
         .qq-buttons {
@@ -223,29 +292,64 @@
         }
         
         .btn-primary {
-            background: #d4af37;
+            background: #d4af37;  /* 【待替换22】主按钮背景色 */
             color: #1a1a1a;
-            border-color: #b87c4b;
+            border-color: #b87c4b;  /* 【待替换23】主按钮边框色 */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         
         .btn-primary:hover {
-            background: #e5c158;
+            background: #e5c158;  /* 【待替换24】主按钮悬停色 */
             transform: scale(1.05);
-            box-shadow: 0 0 20px #d4af37;
+            box-shadow: 0 0 20px #d4af37;  /* 【待替换25】主按钮悬停光晕 */
         }
         
         .btn-secondary {
-            background: transparent;
-            color: #d4af37;
-            border-color: #d4af37;
+            background: rgba(0, 0, 0, 0.5);  /* 【待替换26】次按钮背景色 */
+            color: #d4af37;  /* 【待替换27】次按钮文字色 */
+            border-color: #d4af37;  /* 【待替换28】次按钮边框色 */
+            backdrop-filter: blur(2px);
         }
         
         .btn-secondary:hover {
-            background: rgba(212, 175, 55, 0.2);
+            background: rgba(212, 175, 55, 0.3);  /* 【待替换29】次按钮悬停色 */
             transform: scale(1.05);
         }
         
-                /* 响应式调整 */
+        /* 联队管理团队 */
+        .manager-card {
+            background: rgba(37, 37, 37, 0.85);
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 150px;
+            backdrop-filter: blur(2px);
+            border: 1px solid #5a4a3a;
+        }
+        
+        .manager-icon {
+            width: 3rem;
+            height: 3rem;
+            margin: 0 auto 10px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 30px 0 10px;
+            border-top: 1px solid #8b7355;
+            color: #808080;
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px black;
+        }
+        
+        /* 响应式调整 */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -257,22 +361,31 @@
                 font-size: 2.5rem;
                 padding: 10px 20px;
             }
+            .custom-icon {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 视差背景层 -->
+    <div class="parallax-bg" id="parallaxBg"></div>
+    <!-- 半透明遮罩层 -->
+    <div class="parallax-overlay"></div>
+
     <div class="container">
         <!-- 头部 -->
         <div class="header">
             <div class="squad-name">CNJDZ联队</div>
-            <div class="squad-tag">[THL] · CNJDZ欢迎你</div>
-            <div class="slogan">"二龙而立，天下无敌——寻找真心的朋友！"</div>
+            <div class="squad-tag">[JDZ] · CNJDZ欢迎你</div>
+            <div class="slogan">"二龙并立，天下无敌——寻找真心的朋友！"</div>
         </div>
         
-        <!-- 图片区域 - 注意：你需要替换这里的图片链接 -->
+        <!-- 图片区域 -->
         <div class="image-section">
+            <!-- 【待替换30】联队截图图片链接 -->
             <img class="featured-image" src="https://i.postimg.cc/bJ0zGxMk/61CD8C36C96CF108A404200DFE762428.png" alt="战争雷霆游戏截图">
-            <!-- 上面用的是随机占位图，你需要替换成自己的图片 -->
             <div class="image-caption">↑ 联队日常组队截图</div>
         </div>
         
@@ -281,7 +394,7 @@
             <!-- 联队简介 -->
             <div class="info-card">
                 <div class="card-title">
-                    <span>⚡</span> 联队简介
+                    <span><i class="custom-icon icon-lightning"></i></span> 联队简介
                 </div>
                 <div class="card-content">
                     <p>欢迎各位新人，有什么不会的可以请教群内牢玩家。无论你是陆战月炮高手，还是空战打飞机高手，以及一窍不通的新人玩家。欢迎来到此联队，让我们一起进步。一起进攻D点
@@ -291,9 +404,9 @@
             </div>
             
             <!-- 主打模式 -->
-            <div class="info-card">
+            <div class="info-card">   
                 <div class="card-title">
-                    <span>🎯</span> 主打模式
+                    <span><i class="custom-icon icon-target"></i></span> 主打模式
                 </div>
                 <div class="card-content">
                     <ul>
@@ -308,13 +421,13 @@
             <!-- 加入要求 -->
             <div class="info-card">
                 <div class="card-title">
-                    <span>📋</span> 加入要求
+                    <span><i class="custom-icon icon-requirements"></i></span> 加入要求
                 </div>
                 <div class="card-content">
                     <ul>
                         <li>等级≥20</li>
                         <li>不要逆天木柜子和婆罗门</li>
-                        <li>有麦克风/Discord</li>
+                        <li>有麦克风</li>
                         <li>活跃度不能低于100</li>
                         <li>不要背后另起炉灶</li>
                     </ul>
@@ -324,7 +437,7 @@
             <!-- 联队福利 -->
             <div class="info-card">
                 <div class="card-title">
-                    <span>🎁</span> 联队福利
+                    <span><i class="custom-icon icon-gift"></i></span> 联队福利
                 </div>
                 <div class="card-content">
                     <ul>
@@ -337,46 +450,185 @@
             </div>
         </div>
         
-        <!-- QQ群区域 - 核心 -->
+        <!-- QQ群区域 -->
         <div class="qq-section">
-            <div class="qq-title">⚡ 立即加入我们 ⚡</div>
+            <div class="qq-title">
+                <i class="custom-icon icon-lightning"></i> 立即加入我们 <i class="custom-icon icon-lightning"></i>
+            </div>
+            <!-- 【待替换31】QQ群号（已填958349041） -->
             <div class="qq-number">958349041</div>
             <p style="font-size:1.2rem; margin-bottom:15px;">（欢迎新人）</p>
             <div class="qq-buttons">
-                <!-- 注意：这里的链接需要替换成你的加群链接 -->
-                <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=b38Uuk67GBApFc4RrA0bEk5w8kfFXTKOwY4KIlsKQuLWv3vbsd65tv2rSKNaDMz9&busi_data=eyJncm91cENvZGUiOiI5NTgzNDkwNDEiLCJ0b2tlbiI6Ijh1M2p0Zyt4c2Nlb1BOS0kwRkpZMTdqMjdCd0FFZTBaY1NiUVBsNEJEdThLajBqWnRhemJvbzBZd3BtL3NINnEiLCJ1aW4iOiIyODY0OTY3MDY2In0%3D&data=tUDDsIEUvy05dI24xw4rjA7VIp5vTw61TrtgjaR55n9yy14roMYd2d4KRbFPwxk3tqPfPLPouiA54JazgPLKBg&svctype=4&tempid=h5_group_info" target="_blank" class="btn btn-primary">🐧 一键加群</a>
-                <a href="#" class="btn btn-secondary">📢 欢迎各位新人，有什么不会的可以请教群内牢玩家</a>
+                <!-- 【待替换32】一键加群链接 -->
+                <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=b38Uuk67GBApFc4RrA0bEk5w8kfFXTKOwY4KIlsKQuLWv3vbsd65tv2rSKNaDMz9&busi_data=eyJncm91cENvZGUiOiI5NTgzNDkwNDEiLCJ0b2tlbiI6Ijh1M2p0Zyt4c2Nlb1BOS0kwRkpZMTdqMjdCd0FFZTBaY1NiUVBsNEJEdThLajBqWnRhemJvbzBZd3BtL3NINnEiLCJ1aW4iOiIyODY0OTY3MDY2In0%3D&data=tUDDsIEUvy05dI24xw4rjA7VIp5vTw61TrtgjaR55n9yy14roMYd2d4KRbFPwxk3tqPfPLPouiA54JazgPLKBg&svctype=4&tempid=h5_group_info" target="_blank" class="btn btn-primary">
+                    <i class="custom-icon icon-penguin"></i> 一键加群
+                </a>
+                <a href="#" class="btn btn-secondary">📢 欢迎各位新人</a>
             </div>
             <p style="margin-top: 25px; color:#b87c4b;">加群请备注游戏ID，否则可能被拒</p>
         </div>
         
         <!-- 联队管理成员 -->
         <div style="margin: 30px 0;">
-            <h2 style="color:#d4af37; margin-bottom:20px;">👑 联队管理团队</h2>
+            <h2 style="color:#d4af37; margin-bottom:20px; display: flex; align-items: center; gap: 10px;">
+                <i class="custom-icon icon-crown" style="width: 2.5rem; height: 2.5rem;"></i> 联队管理团队
+            </h2>
             <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-                <div style="background:#252525; padding:15px 25px; border-radius:8px; text-align:center; min-width:150px;">
-                    <div style="font-size:2rem;">👨‍✈️</div>
+                <div class="manager-card">
+                    <div class="manager-icon icon-pilot"></div>
                     <div style="font-weight:bold; color:#d4af37;">总队长</div>
                     <div style="font-size:0.9rem;">游戏ID: 白之洲春梓</div>
                 </div>
-                <div style="background:#252525; padding:15px 25px; border-radius:8px; text-align:center; min-width:150px;">
-                    <div style="font-size:2rem;">👨‍🚀</div>
+                <div class="manager-card">
+                    <div class="manager-icon icon-astronaut"></div>
                     <div style="font-weight:bold; color:#d4af37;">一队队长</div>
                     <div style="font-size:0.9rem;">游戏ID: 彳亍不叫行</div>
                 </div>
-                <div style="background:#252525; padding:15px 25px; border-radius:8px; text-align:center; min-width:150px;">
-                    <div style="font-size:2rem;">🛡️</div>
+                <div class="manager-card">
+                    <div class="manager-icon icon-shield"></div>
                     <div style="font-weight:bold; color:#d4af37;">二队队长</div>
                     <div style="font-size:0.9rem;">游戏ID: 魔法小画家城崎诺亚</div>
                 </div>
+            </div> 
+        </div>
+        
+        <!-- ===== 音乐播放器 ===== -->
+        <!-- 【待替换34】音乐播放器 - 放在页脚上方 -->
+        <div style="margin: 30px 0 20px; text-align: center;">
+            <div style="display: inline-flex; align-items: center; gap: 15px; background: rgba(20, 20, 20, 0.9); padding: 10px 25px; border-radius: 50px; border: 2px solid #8b7355; backdrop-filter: blur(2px); box-shadow: 0 0 15px rgba(0,0,0,0.5);">
+                <!-- 播放/暂停按钮 -->
+                <button id="musicToggle" style="background: none; border: none; cursor: pointer; font-size: 1.8rem; color: #d4af37; display: flex; align-items: center; padding: 0; transition: transform 0.2s;" title="播放/暂停音乐" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <span id="musicIcon">🔊</span>
+                </button>
+                
+                <!-- 音量控制 - 军事风格滑块 -->
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="color: #b87c4b; font-size: 1rem;">🔈</span>
+                    <input type="range" id="musicVolume" min="0" max="100" value="30" style="width: 100px; height: 4px; background: #5a4a3a; border-radius: 2px; accent-color: #d4af37; cursor: pointer;">
+                    <span style="color: #b87c4b; font-size: 1rem;">🔊</span>
+                </div>
+                
+                <!-- 音乐名称/状态 - 已修改为“中系BGM” -->
+                <span style="color: #b0b0b0; font-size: 0.95rem; border-left: 1px solid #5a4a3a; padding-left: 15px; letter-spacing: 1px;">
+                    <span id="musicStatus">▶ 中系BGM</span>
+                </span>
             </div>
         </div>
         
+        <!-- 音频元素（隐藏） -->
+        <audio id="bgMusic" loop preload="metadata" style="display: none;">
+            <!-- 【待替换35】音乐文件链接（MP3格式） - 已替换为你的中系BGM -->
+            <source src="https://dl.sndup.net/r8k34/Chinese%20Techtree-Mr.%20Wei.mp3" type="audio/mpeg">
+            您的浏览器不支持音频播放
+        </audio>
+        
         <!-- 页脚 -->
         <div class="footer">
-            <p>© 2026 战争雷霆 · CNJDZ联队 [THL] | 国服 · 活跃招募中</p>
+            <p>© 2026 战争雷霆 · CNJDZ联队 [JDZ] | 国际服 · 活跃招募中</p>
             <p style="margin-top:10px;">⚔️ 相聚于安东 结识快递站 ⚔️</p>
         </div>
     </div>
+
+    <!-- 视差效果脚本 -->
+    <script>
+        (function() {
+            const bg = document.getElementById('parallaxBg');
+            if (!bg) return;
+            
+            const moveRange = 30;  // 【待替换33】晃动幅度（30可调）
+            let mouseX = 0;
+            let mouseY = 0;
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                const percentX = (mouseX - centerX) / centerX;
+                const percentY = (mouseY - centerY) / centerY;
+                
+                const moveX = percentX * moveRange;
+                const moveY = percentY * moveRange;
+                
+                bg.style.transform = `translate(${-moveX}px, ${-moveY}px)`;
+            });
+            
+            window.addEventListener('resize', function() {
+                centerX = window.innerWidth / 2;
+                centerY = window.innerHeight / 2;
+            });
+            
+            document.addEventListener('mouseleave', function() {
+                bg.style.transform = 'translate(0px, 0px)';
+            });
+            
+        })();
+    </script>
+    
+    <!-- 音乐播放器控制脚本（所有“联队战歌”已改为“中系BGM”） -->
+    <script>
+        (function() {
+            const music = document.getElementById('bgMusic');
+            const toggleBtn = document.getElementById('musicToggle');
+            const musicIcon = document.getElementById('musicIcon');
+            const volumeControl = document.getElementById('musicVolume');
+            const musicStatus = document.getElementById('musicStatus');
+            
+            if (!music || !toggleBtn || !musicIcon || !volumeControl || !musicStatus) return;
+            
+            // 初始音量 (30%)
+            music.volume = volumeControl.value / 100;
+            
+            // 播放/暂停切换
+            toggleBtn.addEventListener('click', function() {
+                if (music.paused) {
+                    music.play();
+                    musicIcon.textContent = '🔊';  // 播放状态
+                    musicStatus.innerHTML = '▶ 中系BGM · 播放中';
+                } else {
+                    music.pause();
+                    musicIcon.textContent = '🔈';  // 暂停状态
+                    musicStatus.innerHTML = '⏸ 中系BGM · 已暂停';
+                }
+            });
+            
+            // 音量控制
+            volumeControl.addEventListener('input', function() {
+                music.volume = this.value / 100;
+            });
+            
+            // 尝试自动播放（浏览器可能会阻止）
+            music.play().then(() => {
+                // 自动播放成功
+                musicStatus.innerHTML = '▶ 中系BGM · 播放中';
+            }).catch(() => {
+                // 自动播放失败，显示暂停状态
+                musicIcon.textContent = '🔈';
+                musicStatus.innerHTML = '⏸ 中系BGM · 点击播放';
+                
+                // 如果自动播放失败，点击页面任意位置播放一次（可选）
+                document.addEventListener('click', function playOnClick() {
+                    if (music.paused) {
+                        music.play();
+                        musicIcon.textContent = '🔊';
+                        musicStatus.innerHTML = '▶ 中系BGM · 播放中';
+                    }
+                    document.removeEventListener('click', playOnClick);
+                }, { once: true });
+            });
+            
+            // 音乐结束时（loop会自动重播，这里只更新状态）
+            music.addEventListener('ended', function() {
+                // 如果是loop模式，不会触发ended
+            });
+            
+            // 播放错误处理
+            music.addEventListener('error', function() {
+                musicStatus.innerHTML = '❌ 中系BGM加载失败';
+                musicIcon.textContent = '⚠️';
+            });
+        })();
+    </script>
 </body>
 </html>
