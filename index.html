@@ -112,27 +112,55 @@
             text-shadow: 1px 1px 2px black;
         }
         
-        /* 图片区域 */
+        /* 图片区域 - 相册布局 */
         .image-section {
             margin: 30px 0;
             text-align: center;
         }
         
-        .featured-image {
-            max-width: 100%;
-            border: 3px solid #8b7355;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.7);
-            transition: transform 0.3s;
-            background: rgba(0,0,0,0.3);
+        /* 相册网格容器 */
+        .photo-grid {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 15px;
         }
         
-        .featured-image:hover {
+        /* 第一排：3列 */
+        .photo-grid-row1 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        /* 第二排：2列（居中） */
+        .photo-grid-row2 {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 66%;
+            margin: 0 auto;
+        }
+        
+        /* 图片样式 */
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 2px solid #8b7355;
+            transition: transform 0.3s;
+        }
+        
+        .photo-item:hover {
             transform: scale(1.02);
+            border-color: #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
         }
         
         .image-caption {
-            margin-top: 10px;
+            margin-top: 20px;
             color: #b87c4b;
             font-size: 0.9rem;
             text-shadow: 1px 1px 2px black;
@@ -365,6 +393,16 @@
                 width: 1.5rem;
                 height: 1.5rem;
             }
+            .photo-grid-row1 {
+                grid-template-columns: 1fr;  /* 手机上一列 */
+            }
+            .photo-grid-row2 {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
+            .photo-item img {
+                height: 200px;
+            }
         }
     </style>
 </head>
@@ -382,10 +420,36 @@
             <div class="slogan">"二龙并立，天下无敌——寻找真心的朋友！"</div>
         </div>
         
-        <!-- 图片区域 -->
+        <!-- 图片区域 - 5张图片布局 -->
         <div class="image-section">
-            <!-- 【待替换30】联队截图图片链接 -->
-            <img class="featured-image" src="https://i.postimg.cc/y88sVvZC/E4FAD1C75C288A217920920D6DB3BCF4.jpg" alt="战争雷霆游戏截图">
+            <!-- 第一排：3张图片 -->
+            <div class="photo-grid photo-grid-row1">
+                <!-- 图片1 -->
+                <div class="photo-item">
+                    <img src="https://i.postimg.cc/y88sVvZC/E4FAD1C75C288A217920920D6DB3BCF4.jpg" alt="战争雷霆截图1">
+                </div>
+                <!-- 图片2（暂时用同一张，你回头可以换） -->
+                <div class="photo-item">
+                    <img src="https://i.postimg.cc/dtBZHNFc/5CEA28CB4CDDBD45EC25549FCA2FD3A5.jpg" alt="战争雷霆截图2">
+                </div>
+                <!-- 图片3（暂时用同一张，你回头可以换） -->
+                <div class="photo-item">
+                    <img src="https://i.postimg.cc/zDyd1WvB/E220DD4C3EBCF03238D39D265B2EC2C1.jpg" alt="战争雷霆截图3">
+                </div>
+            </div>
+            
+            <!-- 第二排：2张图片 -->
+            <div class="photo-grid photo-grid-row2">
+                <!-- 图片4（暂时用同一张，你回头可以换） -->
+                <div class="photo-item">
+                    <img src="https://i.postimg.cc/8ChS498J/wei-1.jpg" alt="战争雷霆截图4">
+                </div>
+                <!-- 图片5（暂时用同一张，你回头可以换） -->
+                <div class="photo-item">
+                    <img src="https://i.postimg.cc/J4vCLMMF/8DC7BB2A217ABCED91A5871EE4F6957A.jpg" alt="战争雷霆截图5">
+                </div>
+            </div>
+            
             <div class="image-caption">↑ 联队日常组队截图</div>
         </div>
         
