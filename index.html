@@ -492,36 +492,6 @@
             </div> 
         </div>
         
-        <!-- ===== 音乐播放器 ===== -->
-        <!-- 【待替换34】音乐播放器 - 放在页脚上方 -->
-        <div style="margin: 30px 0 20px; text-align: center;">
-            <div style="display: inline-flex; align-items: center; gap: 15px; background: rgba(20, 20, 20, 0.9); padding: 10px 25px; border-radius: 50px; border: 2px solid #8b7355; backdrop-filter: blur(2px); box-shadow: 0 0 15px rgba(0,0,0,0.5);">
-                <!-- 播放/暂停按钮 -->
-                <button id="musicToggle" style="background: none; border: none; cursor: pointer; font-size: 1.8rem; color: #d4af37; display: flex; align-items: center; padding: 0; transition: transform 0.2s;" title="播放/暂停音乐" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-                    <span id="musicIcon">🔊</span>
-                </button>
-                
-                <!-- 音量控制 - 军事风格滑块 -->
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="color: #b87c4b; font-size: 1rem;">🔈</span>
-                    <input type="range" id="musicVolume" min="0" max="100" value="30" style="width: 100px; height: 4px; background: #5a4a3a; border-radius: 2px; accent-color: #d4af37; cursor: pointer;">
-                    <span style="color: #b87c4b; font-size: 1rem;">🔊</span>
-                </div>
-                
-                <!-- 音乐名称/状态 - 已修改为“中系BGM” -->
-                <span style="color: #b0b0b0; font-size: 0.95rem; border-left: 1px solid #5a4a3a; padding-left: 15px; letter-spacing: 1px;">
-                    <span id="musicStatus">▶ 中系BGM</span>
-                </span>
-            </div>
-        </div>
-        
-        <!-- 音频元素（隐藏） -->
-        <audio id="bgMusic" loop preload="metadata" style="display: none;">
-            <!-- 【待替换35】音乐文件链接（MP3格式） - 已替换为你的中系BGM -->
-            <source src="https://dl.sndup.net/r8k34/Chinese%20Techtree-Mr.%20Wei.mp3" type="audio/mpeg">
-            您的浏览器不支持音频播放
-        </audio>
-        
         <!-- 页脚 -->
         <div class="footer">
             <p>© 2026 战争雷霆 · CNJDZ联队 [JDZ] | 国际服 · 活跃招募中</p>
@@ -563,71 +533,6 @@
                 bg.style.transform = 'translate(0px, 0px)';
             });
             
-        })();
-    </script>
-    
-    <!-- 音乐播放器控制脚本（所有“联队战歌”已改为“中系BGM”） -->
-    <script>
-        (function() {
-            const music = document.getElementById('bgMusic');
-            const toggleBtn = document.getElementById('musicToggle');
-            const musicIcon = document.getElementById('musicIcon');
-            const volumeControl = document.getElementById('musicVolume');
-            const musicStatus = document.getElementById('musicStatus');
-            
-            if (!music || !toggleBtn || !musicIcon || !volumeControl || !musicStatus) return;
-            
-            // 初始音量 (30%)
-            music.volume = volumeControl.value / 100;
-            
-            // 播放/暂停切换
-            toggleBtn.addEventListener('click', function() {
-                if (music.paused) {
-                    music.play();
-                    musicIcon.textContent = '🔊';  // 播放状态
-                    musicStatus.innerHTML = '▶ 中系BGM · 播放中';
-                } else {
-                    music.pause();
-                    musicIcon.textContent = '🔈';  // 暂停状态
-                    musicStatus.innerHTML = '⏸ 中系BGM · 已暂停';
-                }
-            });
-            
-            // 音量控制
-            volumeControl.addEventListener('input', function() {
-                music.volume = this.value / 100;
-            });
-            
-            // 尝试自动播放（浏览器可能会阻止）
-            music.play().then(() => {
-                // 自动播放成功
-                musicStatus.innerHTML = '▶ 中系BGM · 播放中';
-            }).catch(() => {
-                // 自动播放失败，显示暂停状态
-                musicIcon.textContent = '🔈';
-                musicStatus.innerHTML = '⏸ 中系BGM · 点击播放';
-                
-                // 如果自动播放失败，点击页面任意位置播放一次（可选）
-                document.addEventListener('click', function playOnClick() {
-                    if (music.paused) {
-                        music.play();
-                        musicIcon.textContent = '🔊';
-                        musicStatus.innerHTML = '▶ 中系BGM · 播放中';
-                    }
-                    document.removeEventListener('click', playOnClick);
-                }, { once: true });
-            });
-            
-            // 音乐结束时（loop会自动重播，这里只更新状态）
-            music.addEventListener('ended', function() {
-                // 如果是loop模式，不会触发ended
-            });
-            
-            // 播放错误处理
-            music.addEventListener('error', function() {
-                musicStatus.innerHTML = '❌ 中系BGM加载失败';
-                musicIcon.textContent = '⚠️';
-            });
         })();
     </script>
 </body>
